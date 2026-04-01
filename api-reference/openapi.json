@@ -1,0 +1,2323 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Ello.AI API",
+    "description": "API for managing agents and calls in Ello.AI",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.getello.ai/"
+    }
+  ],
+  "paths": {
+    "/api/agents/{agent_id}": {
+      "get": {
+        "operationId": "getAgentById",
+        "tags": ["Agents"],
+        "summary": "Get Agent",
+        "description": "Retrieves details of a specific agent by its ID",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "description": "Unique identifier of the agent (e.g., 683715217c8e5fe1361c6faa)",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Agent retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "integer", "example": 200 },
+                    "message": { "type": "string", "example": "Agent retrieved successfully" },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_id": { "type": "string", "example": "683715217c8e5fe1361c6faa" },
+                        "workspaceId": { "type": "string", "example": "683578ec8ac922546dbaadaa" },
+                        "name": { "type": "string", "example": "My Outbound Agent" },
+                        "type": { "type": "string", "example": "outbound" },
+                        "category": { "type": "string", "example": "general" },
+                        "description": { "type": "string", "example": "AI Agent for voice calls" },
+                        "image": { "type": "string", "example": "https://voicemart.ai/assistant-icons/default.png" },
+                        "features": { "type": "array", "items": { "type": "string" }, "example": [] },
+                        "popularity": { "type": "integer", "example": 0 },
+                        "voiceConfig": {
+                          "type": "object",
+                          "properties": {
+                            "provider": { "type": "string", "example": "elevenlabs" },
+                            "voiceId": { "type": "string", "example": "emily" },
+                            "language": { "type": "string", "example": "en-US" },
+                            "patienceLevel": { "type": "integer", "example": 1 },
+                            "speed": { "type": "integer", "example": 1 },
+                            "pitch": { "type": "integer", "example": 1 },
+                            "latency": { "type": "number", "example": 0.5 },
+                            "stability": { "type": "number", "example": 0.5 },
+                            "styleExaggeration": { "type": "number", "example": 0.75 },
+                            "similarity": { "type": "number", "example": 0.8 },
+                            "voicePromptType": { "type": "string", "nullable": true, "example": null },
+                            "voicePrompt": { "type": "string", "nullable": true, "example": null }
+                          }
+                        },
+                        "aiModel": {
+                          "type": "object",
+                          "properties": {
+                            "provider": { "type": "string", "example": "openai" },
+                            "model": { "type": "string", "example": "gpt-4" },
+                            "temperature": { "type": "number", "example": 0.7 },
+                            "maxTokens": { "type": "integer", "example": 200 }
+                          }
+                        },
+                        "callConfig": {
+                          "type": "object",
+                          "properties": {
+                            "timeZone": { "type": "string", "example": "UTC" },
+                            "maxDuration": { "type": "integer", "example": 600 },
+                            "voicemailDetection": {
+                              "type": "object",
+                              "properties": {
+                                "enabled": { "type": "boolean", "example": true },
+                                "type": { "type": "string", "example": "ml-based" }
+                              }
+                            },
+                            "recordingEnabled": { "type": "boolean", "example": true },
+                            "transcriptionEnabled": { "type": "boolean", "example": true },
+                            "speakerBoost": { "type": "boolean", "example": false },
+                            "idleReminders": {
+                              "type": "array",
+                              "items": { "type": ["boolean", "number"] },
+                              "example": [false, 0.75]
+                            },
+                            "backGroundNoiseEnv": { "type": "string", "nullable": true, "example": null },
+                            "limitCallDuration": {
+                              "type": "array",
+                              "items": { "type": ["boolean", "number"] },
+                              "example": [false, 20]
+                            },
+                            "backGroundNoiseLevel": { "type": "string", "nullable": true, "example": null },
+                            "backGroundNoiseThreshold": { "type": "number", "example": 0.75 },
+                            "backGroundNoiseTimeout": { "type": "integer", "example": 10 },
+                            "backGroundNoiseTimeoutThreshold": { "type": "number", "example": 0.75 },
+                            "backGroundNoiseTimeoutInterval": { "type": "integer", "example": 10 }
+                          }
+                        },
+                        "fillerWords": { "type": "boolean", "example": false },
+                        "status": { "type": "boolean", "example": true },
+                        "customVocabulary": { "type": "array", "items": { "type": "string" }, "example": [] },
+                        "timezone": { "type": "string", "example": "India" },
+                        "greeting": { "type": "string", "example": "Hello! How can I assist you today?" },
+                        "prompt": {
+                          "type": "string",
+                          "example": "You are a helpful AI assistant focused on providing accurate and friendly responses."
+                        },
+                        "knowledgeBases": { "type": "array", "items": { "type": "string" }, "example": [] },
+                        "actions": { "type": "array", "items": { "type": "string" }, "example": [] },
+                        "deployment": {
+                          "type": "object",
+                          "properties": {
+                            "status": { "type": "string", "example": "draft" },
+                            "version": { "type": "integer", "example": 1 },
+                            "deployedAt": { "type": "string", "format": "date-time", "example": "2025-05-28T13:52:33.949000" },
+                            "lastUpdated": { "type": "string", "format": "date-time", "example": "2025-05-28T13:52:33.949000" },
+                            "error": { "type": "string", "nullable": true, "example": null }
+                          }
+                        },
+                        "stats": {
+                          "type": "object",
+                          "properties": {
+                            "totalCalls": { "type": "integer", "example": 0 },
+                            "successRate": { "type": "number", "example": 1 },
+                            "avgCallDuration": { "type": "integer", "example": 0 },
+                            "lastCallAt": { "type": "string", "format": "date-time", "example": null }
+                          }
+                        },
+                        "templateCategory": { "type": "string", "nullable": true, "example": null },
+                        "industry": { "type": "string", "nullable": true, "example": null },
+                        "recommendedActions": { "type": "array", "items": { "type": "string" }, "example": [] },
+                        "createdAt": { "type": "string", "format": "date-time", "example": "2025-05-28T13:52:33.951000" },
+                        "updatedAt": { "type": "string", "format": "date-time", "example": "2025-05-28T13:52:33.951000" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorBadRequest" }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Not Found"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          { "apiKey": [] },
+          { "bearerAuth": [] }
+
+        ],
+        "x-mint": {
+          "mcp": { "enabled": true }
+        }
+      },
+      "put": {
+        "operationId": "updateAgent",
+        "tags": ["Agents"],
+        "summary": "Update Agent",
+        "description": "Updates an existing agent by ID.",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "description": "Unique identifier of the agent to update.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "683c06debc7538418958bdb9"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "description": "The type of agent (e.g., inbound,outbound).",
+                    "enum": ["inbound", "outbound", "chat"],
+                    "example": "inbound"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Optional name of the agent.",
+                    "example": "My Inbound Agent"
+                  },
+                  "greeting": {
+                    "type": "string",
+                    "description": "Greeting message for the agent.",
+                    "example": "Hello! How can I assist you today?"
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "description": "Prompt or personality configuration for the agent.",
+                    "example": "You are a helpful AI Agent focused on providing accurate and friendly responses."
+                  },
+                  "knowledgeBases": {
+                    "type": "array",
+                    "description": "List of knowledge base IDs linked to this agent.",
+                    "items": { "type": "string" },
+                    "example": ["kb_001", "kb_002"]
+                  }
+                },
+                "required": ["type"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Agent updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "integer", "example": 200 },
+                    "message": { "type": "string", "example": "Agent updated successfully" },
+                    "data": {
+                      "type": "object",
+                      "example": {
+                        "_id": "683c06debc7538418958bdb9",
+                        "workspaceId": "683c0129ea0c6f3e9b2ae326",
+                        "name": "My Inbound Agent",
+                        "type": "inbound",
+                        "category": "general",
+                        "description": "AI Agent for voice calls",
+                        "image": "https://voicemart.ai/assistant-icons/default.png",
+                        "features": [],
+                        "popularity": 0,
+                        "voiceConfig": {
+                          "provider": "elevenlabs",
+                          "voiceId": "emily",
+                          "language": "en-US",
+                          "patienceLevel": 1,
+                          "speed": 1,
+                          "pitch": 1,
+                          "latency": 0.5,
+                          "stability": 0.5,
+                          "styleExaggeration": 0.75,
+                          "similarity": 0.8,
+                          "voicePromptType": null,
+                          "voicePrompt": null
+                        },
+                        "aiModel": {
+                          "provider": "openai",
+                          "model": "gpt-4",
+                          "temperature": 0.7,
+                          "maxTokens": 200
+                        },
+                        "callConfig": {
+                          "timeZone": "IST",
+                          "maxDuration": 600,
+                          "voicemailDetection": {
+                            "enabled": true,
+                            "type": "ml-based"
+                          },
+                          "recordingEnabled": true,
+                          "transcriptionEnabled": true,
+                          "speakerBoost": false,
+                          "idleReminders": [false, 0.75],
+                          "limitCallDuration": [false, 20]
+                        },
+                        "fillerWords": true,
+                        "status": true,
+                        "timezone": "India",
+                        "greeting": "Hello! How can I assist you today?",
+                        "prompt": "You are a helpful AI Agent focused on providing accurate and friendly responses.",
+                        "knowledgeBases": [],
+                        "deployment": {
+                          "status": "draft",
+                          "version": 1
+                        },
+                        "createdAt": "2025-06-01T07:53:02.509000",
+                        "updatedAt": "2025-06-01T09:16:05.556000"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Agent not found",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorNotFound" }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorBadRequest" }
+              }
+            }
+          }
+        },
+        "security": [
+          { "apiKey": [] },
+          { "bearerAuth": [] }
+        ],
+        "x-mint": {
+          "mcp": { "enabled": true }
+        }
+      },
+      "delete": {
+          "operationId": "deleteAssistant",
+          "tags": ["Agents"],
+          "summary": "Delete Agent",
+          "description": "Deletes an agent by ID",
+          "parameters": [
+            {
+              "name": "agent_id",
+              "in": "path",
+              "description": "Unique identifier of the agent to delete",
+              "required": true,
+              "schema": { "type": "string", "example": "683579c3a034253be66ea984" }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Agent deleted successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "status": { "type": "integer", "example": 200 },
+                      "message": { "type": "string", "example": "Agent deleted successfully" },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "_id": { "type": "string", "example": "683c2b4e59e70f73476ed5cc" },
+                          "workspaceId": { "type": "string", "example": "683c0129ea0c6f3e9b2ae326" },
+                          "name": { "type": "string", "example": "My Inbound Agent - Harsha" },
+                          "type": { "type": "string", "example": "inbound" },
+                          "category": { "type": "string", "example": "general" },
+                          "description": { "type": "string", "example": "AI assistant for voice calls" },
+                          "image": { "type": "string", "format": "uri", "example": "https://voicemart.ai/assistant-icons/default.png" },
+                          "features": { "type": "array", "items": { "type": "string" }, "example": [] },
+                          "popularity": { "type": "integer", "example": 0 },
+                          "voiceConfig": {
+                            "type": "object",
+                            "properties": {
+                              "provider": { "type": "string", "example": "elevenlabs" },
+                              "voiceId": { "type": "string", "example": "emily" },
+                              "language": { "type": "string", "example": "en-US" },
+                              "patienceLevel": { "type": "integer", "example": 1 },
+                              "speed": { "type": "integer", "example": 1 },
+                              "pitch": { "type": "integer", "example": 1 },
+                              "latency": { "type": "number", "example": 0.5 },
+                              "stability": { "type": "number", "example": 0.5 },
+                              "styleExaggeration": { "type": "number", "example": 0.75 },
+                              "similarity": { "type": "number", "example": 0.8 },
+                              "voicePromptType": { "type": "string", "nullable": true, "example": null },
+                              "voicePrompt": { "type": "string", "nullable": true, "example": null }
+                            }
+                          },
+                          "aiModel": {
+                            "type": "object",
+                            "properties": {
+                              "provider": { "type": "string", "example": "openai" },
+                              "model": { "type": "string", "example": "gpt-4" },
+                              "temperature": { "type": "number", "example": 0.7 },
+                              "maxTokens": { "type": "integer", "example": 200 }
+                            }
+                          },
+                          "callConfig": {
+                            "type": "object",
+                            "properties": {
+                              "timeZone": { "type": "string", "example": "UTC" },
+                              "maxDuration": { "type": "integer", "example": 600 },
+                              "voicemailDetection": {
+                                "type": "object",
+                                "properties": {
+                                  "enabled": { "type": "boolean", "example": true },
+                                  "type": { "type": "string", "example": "ml-based" }
+                                }
+                              },
+                              "recordingEnabled": { "type": "boolean", "example": true },
+                              "transcriptionEnabled": { "type": "boolean", "example": true },
+                              "speakerBoost": { "type": "boolean", "example": false },
+                              "idleReminders": {
+                                "type": "array",
+                                "items": { "type": ["boolean", "number"] },
+                                "example": [false, 0.75]
+                              },
+                              "backGroundNoiseEnv": { "type": "string", "nullable": true, "example": null },
+                              "limitCallDuration": {
+                                "type": "array",
+                                "items": { "type": ["boolean", "number"] },
+                                "example": [false, 20]
+                              },
+                              "backGroundNoiseLevel": { "type": "string", "nullable": true, "example": null },
+                              "backGroundNoiseThreshold": { "type": "number", "example": 0.75 },
+                              "backGroundNoiseTimeout": { "type": "integer", "example": 10 },
+                              "backGroundNoiseTimeoutThreshold": { "type": "number", "example": 0.75 },
+                              "backGroundNoiseTimeoutInterval": { "type": "integer", "example": 10 }
+                            }
+                          },
+                          "fillerWords": { "type": "boolean", "example": false },
+                          "status": { "type": "boolean", "example": true },
+                          "customVocabulary": { "type": "array", "items": { "type": "string" }, "example": [] },
+                          "timezone": { "type": "string", "example": "India" },
+                          "greeting": { "type": "string", "example": "Hello! How can I assist you today?" },
+                          "prompt": { "type": "string", "example": "You are a helpful AI assistant focused on providing accurate and friendly responses." },
+                          "knowledgeBases": { "type": "array", "items": { "type": "string" }, "example": [] },
+                          "actions": { "type": "array", "items": { "type": "string" }, "example": [] },
+                          "deployment": {
+                            "type": "object",
+                            "properties": {
+                              "status": { "type": "string", "example": "draft" },
+                              "version": { "type": "integer", "example": 1 },
+                              "deployedAt": { "type": "string", "format": "date-time", "nullable": true, "example": null },
+                              "lastUpdated": { "type": "string", "format": "date-time", "example": "2025-06-01T10:28:30.021000" },
+                              "error": { "type": "string", "nullable": true, "example": null }
+                            }
+                          },
+                          "stats": {
+                            "type": "object",
+                            "properties": {
+                              "totalCalls": { "type": "integer", "example": 0 },
+                              "successRate": { "type": "number", "example": 1 },
+                              "avgCallDuration": { "type": "integer", "example": 0 },
+                              "lastCallAt": { "type": "string", "format": "date-time", "nullable": true, "example": null }
+                            }
+                          },
+                          "templateCategory": { "type": "string", "nullable": true, "example": null },
+                          "industry": { "type": "string", "nullable": true, "example": null },
+                          "recommendedActions": { "type": "array", "items": { "type": "string" }, "example": [] },
+                          "createdAt": { "type": "string", "format": "date-time", "example": "2025-06-01T10:28:30.022000" },
+                          "updatedAt": { "type": "string", "format": "date-time", "example": "2025-06-01T10:28:30.022000" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Unexpected error",
+              "content": {
+                "application/json": {
+                  "schema": { "$ref": "#/components/schemas/ErrorBadRequest" }
+                }
+              }
+            },
+            "404": {
+              "description": "Agent not found",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "status": { "type": "integer", "example": 404 },
+                      "message": { "type": "string", "example": "Agent not found" }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            { "apiKey": [] },
+            { "bearerAuth": [] }
+          ],
+          "x-mint": {
+            "mcp": { "enabled": true }
+          }
+        },
+    },
+    "/api/agents": {
+      "post": {
+        "operationId": "createAgent",
+        "tags": ["Agents"],
+        "summary": "Create Agent",
+        "description": "Creates a new agent of specified type.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": ["inbound", "outbound", "chat", "agent builder"],
+                    "example": "outbound"
+                  }
+                },
+                "required": ["type"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Agent created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "integer", "example": 200 },
+                    "message": { "type": "string", "example": "Agent created successfully" },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_id": { "type": "string", "example": "683715217c8e5fe1361c6faa" },
+                        "name": { "type": "string", "example": "My Outbound Assistant" },
+                        "type": { "type": "string", "example": "outbound" },
+                        "category": { "type": "string", "example": "general" },
+                        "description": { "type": "string", "example": "AI assistant for voice calls" },
+                        "image": { "type": "string", "example": "https://voicemart.ai/assistant-icons/default.png" },
+                        "features": { "type": "array", "items": { "type": "string" } },
+                        "popularity": { "type": "integer", "example": 0 },
+                        "voiceConfig": {
+                          "type": "object",
+                          "properties": {
+                            "provider": { "type": "string", "example": "elevenlabs" },
+                            "voiceId": { "type": "string", "example": "emily" },
+                            "language": { "type": "string", "example": "en-US" },
+                            "patienceLevel": { "type": "integer", "example": 1 },
+                            "speed": { "type": "integer", "example": 1 },
+                            "pitch": { "type": "integer", "example": 1 },
+                            "latency": { "type": "number", "example": 0.5 },
+                            "stability": { "type": "number", "example": 0.5 },
+                            "styleExaggeration": { "type": "number", "example": 0.75 },
+                            "similarity": { "type": "number", "example": 0.8 },
+                            "voicePromptType": { "type": ["string", "null"], "example": null },
+                            "voicePrompt": { "type": ["string", "null"], "example": null }
+                          }
+                        },
+                        "aiModel": {
+                          "type": "object",
+                          "properties": {
+                            "provider": { "type": "string", "example": "openai" },
+                            "model": { "type": "string", "example": "gpt-4" },
+                            "temperature": { "type": "number", "example": 0.7 },
+                            "maxTokens": { "type": "integer", "example": 200 }
+                          }
+                        },
+                        "callConfig": {
+                          "type": "object",
+                          "properties": {
+                            "timeZone": { "type": "string", "example": "UTC" },
+                            "maxDuration": { "type": "integer", "example": 600 },
+                            "voicemailDetection": {
+                              "type": "object",
+                              "properties": {
+                                "enabled": { "type": "boolean", "example": true },
+                                "type": { "type": "string", "example": "ml-based" }
+                              }
+                            },
+                            "recordingEnabled": { "type": "boolean", "example": true },
+                            "transcriptionEnabled": { "type": "boolean", "example": true },
+                            "speakerBoost": { "type": "boolean", "example": false }
+                          }
+                        },
+                        "status": { "type": "boolean", "example": true },
+                        "createdAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2025-05-28T13:52:33.951000"
+                        },
+                        "updatedAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2025-05-28T13:52:33.951000"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorBadRequest" }
+              }
+            }
+          }
+        },
+        "security": [
+          { "apiKey": [] },
+          { "bearerAuth": [] }
+        ],
+        "x-mint": {
+          "mcp": { "enabled": true }
+        }
+      },
+      "get": {
+          "operationId": "getAssistants",
+          "tags": ["Agents"],
+          "summary": "List Agents",
+          "description": "Retrieves a paginated list of agents",
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "Number of agents per page",
+              "required": false,
+              "schema": { "type": "integer", "minimum": 1, "maximum": 100, "default": 10, "example": 10 }
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "description": "Page number",
+              "required": false,
+              "schema": { "type": "integer", "minimum": 1, "default": 1, "example": 1 }
+            },
+            {
+              "name": "category",
+              "in": "query",
+              "description": "Filter by agent category",
+              "required": false,
+              "schema": { "type": "string", "example": "sales" }
+            },
+            {
+              "name": "search",
+              "in": "query",
+              "description": "Search in name or description",
+              "required": false,
+              "schema": { "type": "string", "example": "outbound" }
+            },
+            {
+              "name": "sort_field",
+              "in": "query",
+              "description": "Field to sort by",
+              "required": false,
+              "schema": { "type": "string", "default": "createdAt", "example": "createdAt" }
+            },
+            {
+              "name": "sort_order",
+              "in": "query",
+              "description": "Sort direction",
+              "required": false,
+              "schema": { "type": "string", "enum": ["asc", "desc"], "default": "desc", "example": "desc" }
+            },
+            {
+              "name": "startDate",
+              "in": "query",
+              "description": "Filter agents created on or after this date (ISO 8601)",
+              "required": false,
+              "schema": { "type": "string", "format": "date-time", "example": "2025-05-01T00:00:00.000Z" }
+            },
+            {
+              "name": "endDate",
+              "in": "query",
+              "description": "Filter agents created before this date (ISO 8601)",
+              "required": false,
+              "schema": { "type": "string", "format": "date-time", "example": "2025-05-31T23:59:59.999Z" }
+            }
+          ],
+          "requestBody": {
+            "description": "Advanced filter groups (AND between groups, OR within group)",
+            "required": false,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "filters": {
+                        "type": "object",
+                        "properties": {
+                          "status": { "type": "boolean", "example": true },
+                          "type": {
+                            "type": "string",
+                            "enum": ["inbound", "outbound", "chat", "agent builder"],
+                            "example": "outbound"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": ["filters"]
+                  },
+                  "example": [
+                    {
+                      "filters": {
+                        "status": true,
+                        "type": "outbound"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Agents retrieved successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "status": { "type": "integer", "example": 200 },
+                      "message": { "type": "string", "example": "Agents retrieved successfully" },
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": { "type": "string", "example": "683715217c8e5fe1361c6faa" },
+                            "name": { "type": "string", "example": "My Outbound Agent" },
+                            "type": { "type": "string", "example": "outbound" },
+                            "createdAt": { "type": "string", "format": "date-time", "example": "2025-05-28T13:52:33.951000" },
+                            "voiceEngine": { "type": "string", "example": "elevenlabs" },
+                            "phoneNumber": { "type": "string", "nullable": true, "example": null },
+                            "status": { "type": "boolean", "example": true }
+                          }
+                        }
+                      },
+                      "pagination": {
+                        "type": "object",
+                        "properties": {
+                          "page": { "type": "integer", "example": 1 },
+                          "limit": { "type": "integer", "example": 100 },
+                          "total": { "type": "integer", "example": 2 },
+                          "totalPages": { "type": "integer", "example": 1 },
+                          "hasNextPage": { "type": "boolean", "example": false },
+                          "hasPrevPage": { "type": "boolean", "example": false }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Unexpected error",
+              "content": {
+                "application/json": {
+                  "schema": { "$ref": "#/components/schemas/ErrorBadRequest" }
+                }
+              }
+            }
+          },
+          "security": [
+            { "apiKey": [] },
+            { "bearerAuth": [] }
+          ],
+          "x-mint": {
+            "mcp": { "enabled": true }
+          }
+       },
+    },
+    "/api/agents/knowledge-bases/{kb_id}/assign": {
+      "post": {
+        "operationId": "assignKnowledgeBaseToAgent",
+        "tags": ["Agents"],
+        "summary": "Assign Agent",
+        "description": "Assigns an existing knowledge base to one or more agents.",
+        "parameters": [
+          {
+            "name": "kb_id",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier of the knowledge base to assign.",
+            "schema": {
+              "type": "string",
+              "example": "kb_12345"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "agent_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": ["68dce5202fc07b92042493b1"]
+                  }
+                },
+                "required": ["agent_ids"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Knowledge base assigned successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Knowledge base assigned successfully"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": ["68dce5202fc07b92042493b1"]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+              "description": "Unexpected error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "status": { "type": "integer", "example": 400 },
+                      "message": { "type": "string", "example": "Unexpected error" }
+                    }
+                  }
+                }
+              }
+          }
+        },
+        "security": [
+            { "apiKey": [] },
+            { "bearerAuth": [] }
+          ],
+          "x-mint": {
+            "mcp": { "enabled": true }
+          }
+      }
+    },
+    "/api/agents/knowledge-bases/{kb_id}/unassign": {
+      "post": {
+        "operationId": "unassignKnowledgeBaseFromAgent",
+        "tags": ["Agents"],
+        "summary": "Unassign Agent",
+        "description": "Removes an existing knowledge base association from one or more agents.",
+        "parameters": [
+          {
+            "name": "kb_id",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier of the knowledge base to unassign.",
+            "schema": {
+              "type": "string",
+              "example": "kb_12345"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "agent_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": ["68dce5202fc07b92042493b1"]
+                  }
+                },
+                "required": ["agent_ids"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Knowledge base unassigned successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Knowledge base unassigned successfully"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": ["68dce5202fc07b92042493b1"]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+              "description": "Unexpected error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "status": { "type": "integer", "example": 400 },
+                      "message": { "type": "string", "example": "Unexpected error" }
+                    }
+                  }
+                }
+              }
+          }
+        },
+        "security": [
+            { "apiKey": [] },
+            { "bearerAuth": [] }
+          ],
+          "x-mint": {
+            "mcp": { "enabled": true }
+          }
+       }
+    },
+    "/api/knowledge-base": {
+        "post": {
+        "operationId": "createSingleSourceKnowledgeBase",
+        "tags": ["Knowledge Base"],
+        "summary": "Create Knowledge Base",
+        "description": "Creates a knowledge base using a URL, base URL, and sub-links.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "urlName": {
+                    "type": "string",
+                    "example": "Ello.ai"
+                  },
+                  "baseUrl": {
+                    "type": "string",
+                    "example": "https://getello.ai"
+                  },
+                  "subLinks": {
+                    "type": "string",
+                    "example": "dsfsdfdsf"
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": "link"
+                  }
+                },
+                "required": ["urlName", "baseUrl"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Single source knowledge base created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Single source knowledge base created successfully"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_id": { "type": "string", "example": "690108a004ea5e76d18034ab" },
+                        "workspaceId": { "type": "string", "example": "685d4b93fb5b2e221dc80ea9" },
+                        "userId": { "type": "string", "example": "685d4b93fb5b2e221dc80ea8" },
+                        "name": { "type": "string", "example": "srikanth test" },
+                        "description": { "type": "string", "example": "Single source knowledge base: srikanth test" },
+                        "type": { "type": "string", "example": "link" },
+                        "sources": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "_id": { "type": "string", "example": "690108a004ea5e76d18034ad" },
+                              "type": { "type": "string", "example": "link" },
+                              "fileType": { "type": ["string", "null"], "example": null },
+                              "name": { "type": "string", "example": "srikanth test" },
+                              "content": { "type": ["string", "null"], "example": null },
+                              "url": {
+                                "type": "array",
+                                "items": { "type": "string" },
+                                "example": ["http://yesgnome.com"]
+                              },
+                              "filePath": { "type": ["string", "null"], "example": null },
+                              "status": { "type": "string", "example": "completed" },
+                              "error": { "type": ["string", "null"], "example": null },
+                              "createdAt": { "type": "string", "format": "date-time" },
+                              "updatedAt": { "type": "string", "format": "date-time" },
+                              "metadata": {
+                                "type": "object",
+                                "properties": {
+                                  "fileName": { "type": ["string", "null"], "example": null },
+                                  "fileType": { "type": ["string", "null"], "example": null },
+                                  "fileKey": { "type": ["string", "null"], "example": null },
+                                  "websiteName": { "type": "string", "example": "srikanth test" },
+                                  "description": { "type": "string", "example": "" }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "status": { "type": "boolean", "example": true },
+                        "createdAt": { "type": "string", "format": "date-time" },
+                        "updatedAt": { "type": "string", "format": "date-time" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+              "description": "Unexpected error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "status": { "type": "integer", "example": 400 },
+                      "message": { "type": "string", "example": "Unexpected error" }
+                    }
+                  }
+                }
+              }
+          }
+        }, 
+        "security": [
+          { "apiKey": [] },
+          { "bearerAuth": [] }
+        ],
+        "x-mint": {
+          "mcp": { "enabled": true }
+        }
+      },
+        "get": {
+        "operationId": "listKnowledgeBases",
+        "tags": ["Knowledge"],
+        "summary": "List Knowledge Bases",
+        "description": "Retrieve a paginated list of knowledge bases with filters, search, and sorting options",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination",
+            "required": false,
+            "schema": { "type": "integer", "example": 1 }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results per page",
+            "required": false,
+            "schema": { "type": "integer", "example": 20 }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Search keyword to filter knowledge bases by name or description",
+            "required": false,
+            "schema": { "type": "string", "example": "link" }
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "description": "Filter results created after this date (ISO 8601 string)",
+            "required": false,
+            "schema": { "type": "string", "format": "date-time", "example": "2025-06-01T00:00:00Z" }
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "description": "Filter results created before this date (ISO 8601 string)",
+            "required": false,
+            "schema": { "type": "string", "format": "date-time", "example": "2025-06-30T23:59:59Z" }
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "Field to sort by (e.g., name, createdAt)",
+            "required": false,
+            "schema": { "type": "string", "example": "createdAt" }
+          },
+          {
+            "name": "sortOrder",
+            "in": "query",
+            "description": "Sort order, either asc or desc",
+            "required": false,
+            "schema": { "type": "string", "enum": ["asc", "desc"], "example": "desc" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Knowledge bases retrieved successfully",
+            "content": {
+              "application/json": {
+                "example": {
+                  "status": 200,
+                  "message": "Knowledge bases retrieved successfully",
+                  "data": [
+                    {
+                      "_id": "684035a7dba9d9c2aa583d93",
+                      "workspaceId": "683ea9dbea7c50a81708dae7",
+                      "name": "Test",
+                      "description": "Updated description of the knowledge base 1",
+                      "type": "documents",
+                      "sources": [
+                        {
+                          "_id": "684035a7dba9d9c2aa583d94",
+                          "type": "pdf",
+                          "name": "sample1.pdf",
+                          "url": "https://voicemart-assets.s3.amazonaws.com/683ea9dbea7c50a81708dae7/documents/sample1.pdf",
+                          "status": "completed",
+                          "metadata": {
+                            "fileName": "sample1.pdf",
+                            "fileType": "pdf",
+                            "fileKey": "683ea9dbea7c50a81708dae7/documents/sample1.pdf"
+                          }
+                        }
+                      ],
+                      "status": true,
+                      "createdAt": "2025-06-04T12:01:43.682000",
+                      "updatedAt": "2025-06-04T13:58:16.585000"
+                    }
+                  ],
+                  "pagination": {
+                    "page": 1,
+                    "limit": 20,
+                    "total": 12,
+                    "totalPages": 2,
+                    "hasNextPage": true,
+                    "hasPrevPage": false
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+              "description": "Unexpected error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "status": { "type": "integer", "example": 400 },
+                      "message": { "type": "string", "example": "Unexpected error" }
+                    }
+                  }
+                }
+             }
+          }
+        },        
+        "security": [
+          { "apiKey": [] },
+          { "bearerAuth": [] }
+        ],
+        "x-mint": {
+          "mcp": { "enabled": true }
+        }
+      }
+    },
+    "/api/knowledge-base/{kb_id}": {
+      "delete": {
+        "operationId": "deleteKnowledgeBase",
+        "tags": ["Knowledge"],
+        "summary": "Delete Knowledge Base",
+        "description": "Deletes a knowledge base by workspace and kb ID",
+        "parameters": [
+          {
+            "name": "kb_id",
+            "in": "path",
+            "description": "Unique identifier of the knowledge base",
+            "required": true,
+            "schema": { "type": "string", "example": "68370e3d5b7d04371d20b4e1" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Knowledge base deleted successfully",
+            "content": {
+              "application/json": {
+                "example": {
+                  "status": 200,
+                  "message": "Knowledge base deleted successfully",
+                  "data": {}
+                }
+              }
+            }
+          },
+          "400": {
+              "description": "Unexpected error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "status": { "type": "integer", "example": 400 },
+                      "message": { "type": "string", "example": "Unexpected error" }
+                    }
+                  }
+                }
+              }
+          },
+          "404": {
+            "description": "Knowledge base not found",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          }
+        },
+        "security": [
+          { "apiKey": [] },
+          { "bearerAuth": [] }
+        ],
+        "x-mint": {
+          "mcp": { "enabled": true }
+        }
+      }
+    }, 
+    "/api/agents/{agent_id}/calls": {
+      "post": {
+        "summary": "Create Call",
+        "tags": ["Calls"],
+        "description": "Creates a new call ",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier of the agent initiating the call.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string",
+                    "example": "Hello! Am I speaking to Sri?"
+                  },
+                  "context": {
+                    "type": "string",
+                    "example": "something"
+                  },
+                  "to_number": {
+                    "type": "string",
+                    "example": "12345567890"
+                  },
+                  "source": {
+                    "type": "string",
+                    "example": "something"
+                  },
+                  "hook_url": {
+                    "type": "string",
+                    "example": "http://soetinsdfdfd"
+                  },
+                  "siptrunk_id": {
+                    "type": "string",
+                    "example": "s3434ededs"
+                  },
+                  "agent_type": {
+                    "type": "string",
+                    "example": "webcall"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "sri"
+                  }
+                },
+                "required": ["message", "to_number", "source", "agent_type"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Message published successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Message published successfully"
+                    },
+                    "data": {
+                      "type": "object",
+                      "example": {
+                        "conversation_id": "6900b87ca70928b1224f0619",
+                        "call_status": "success"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+              "description": "Unexpected error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "status": { "type": "integer", "example": 400 },
+                      "message": { "type": "string", "example": "Unexpected error" }
+                    }
+                  }
+                }
+              }
+          }
+        },
+        "security": [
+          { "apiKey": [] },
+          { "bearerAuth": [] }
+        ],
+        "x-mint": {
+          "mcp": { "enabled": true }
+        }
+      }
+    },
+    "/api/reports/agents/calls": {
+      "get": {
+        "summary": "Get Call",
+        "tags": ["Reports"],
+        "description": "Retreives details of a specific call",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Page number for pagination.",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Number of records per page.",
+            "schema": {
+              "type": "integer",
+              "example": 10
+            }
+          },
+          {
+            "name": "fromDate",
+            "in": "query",
+            "required": false,
+            "description": "Start date for filtering (ISO format).",
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "example": "2025-10-01T00:00:00Z"
+            }
+          },
+          {
+            "name": "toDate",
+            "in": "query",
+            "required": false,
+            "description": "End date for filtering (ISO format).",
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "example": "2025-10-29T23:59:59Z"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "description": "Filter calls by status (e.g. success, failed).",
+            "schema": {
+              "type": "string",
+              "example": "success"
+            }
+          },
+          {
+            "name": "agent_type",
+            "in": "query",
+            "required": false,
+            "description": "Filter calls by agent type (e.g. webcall, phonecall).",
+            "schema": {
+              "type": "string",
+              "example": "webcall"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Call stats fetched successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Call stats fetched successfully"
+                    },
+                    "data": {
+                      "type": "object",
+                      "example": {
+                        "total_calls": 125,
+                        "successful_calls": 118,
+                        "failed_calls": 7,
+                        "average_duration": "3m 45s",
+                        "calls": [
+                          {
+                            "call_id": "6900b87ca70928b1224f0619",
+                            "agent_id": "685d4b93e834a8dba90f2e12",
+                            "agent_type": "webcall",
+                            "status": "success",
+                            "duration": "2m 30s",
+                            "created_at": "2025-10-29T10:15:00Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+              "description": "Unexpected error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "status": { "type": "integer", "example": 400 },
+                      "message": { "type": "string", "example": "Unexpected error" }
+                    }
+                  }
+                }
+              }
+          }
+        },
+        "security": [
+          { "apiKey": [] },
+          { "bearerAuth": [] }
+        ],
+        "x-mint": {
+          "mcp": { "enabled": true }
+        }
+      }
+    },
+    "/api/phone-number": {
+      "get": {
+        "summary": "List Phone Numbers",
+        "tags": ["Phone Numbers"],
+        "description": "Retreives a paginated list of phone numbers",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Page number for pagination.",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "description": "Number of phone numbers to return per page.",
+            "schema": {
+              "type": "integer",
+              "example": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Phone numbers fetched successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Phone numbers fetched successfully"
+                    },
+                    "data": {
+                      "type": "object",
+                      "example": {
+                        "total": 3,
+                        "page": 1,
+                        "size": 10,
+                        "phone_numbers": [
+                          {
+                            "_id": "6901a88b23bc1023d88134fa",
+                            "number": "+14155552671",
+                            "status": "active",
+                            "type": "inbound",
+                            "created_at": "2025-10-10T09:30:00Z"
+                          },
+                          {
+                            "_id": "6901a88b23bc1023d88134fb",
+                            "number": "+14155559876",
+                            "status": "inactive",
+                            "type": "outbound",
+                            "created_at": "2025-09-20T11:45:00Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+              "description": "Unexpected error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "status": { "type": "integer", "example": 400 },
+                      "message": { "type": "string", "example": "Unexpected error" }
+                    }
+                  }
+                }
+              }
+          }
+        },
+        "security": [
+          { "apiKey": [] },
+          { "bearerAuth": [] }
+        ],
+        "x-mint": {
+          "mcp": { "enabled": true }
+        }
+      }
+    },
+    "/api/agents/{agent_id}/phone-number": {
+      "put": {
+        "summary": "Assign Phone Number",
+        "tags": ["Agents"],
+        "description": "Assigns a phone number for a specific agent by their ID.",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier of the agent to assign or update the phone number for.",
+            "schema": {
+              "type": "string",
+              "example": "786786778hj"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "phone_number": {
+                    "type": "string",
+                    "description": "The phone number to be assigned or updated for the agent.",
+                    "example": "786786709"
+                  }
+                },
+                "required": ["phone_number"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Phone number assigned or updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Phone number assigned successfully"
+                    },
+                    "data": {
+                      "type": "object",
+                      "example": {
+                        "agent_id": "786786778hj",
+                        "phone_number": "786786709",
+                        "assignment_status": "success"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+              "description": "Unexpected error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "status": { "type": "integer", "example": 400 },
+                      "message": { "type": "string", "example": "Unexpected error" }
+                    }
+                  }
+                }
+             }
+          }
+        },
+        "security": [
+          { "apiKey": [] },
+          { "bearerAuth": [] }
+        ],
+        "x-mint": {
+          "mcp": { "enabled": true }
+        }
+      }
+    },
+    "/api/campaign": {
+      "post": {
+        "summary": "Create Campaign",
+        "tags": ["Campaigns"],
+        "description": "Creates a new campaign with an uploaded recipients file, linked assistant, and schedule settings.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "campaignName": {
+                    "type": "string",
+                    "description": "The name of the campaign.",
+                    "example": "Follow-up Campaign October"
+                  },
+                  "assistantId": {
+                    "type": "string",
+                    "description": "The ID of the assistant (agent) associated with this campaign.",
+                    "example": "685d4b93abcf4c90c18034aa"
+                  },
+                  "scheduleTime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Scheduled time for the campaign in ISO format.",
+                    "example": "2025-10-29T11:30:00.000Z"
+                  },
+                  "scheduleEnabled": {
+                    "type": "string",
+                    "description": "Set to 'true' to enable scheduling for the campaign.",
+                    "example": "true"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "CSV file containing the list of recipients for the campaign."
+                  }
+                },
+                "required": ["campaignName", "assistantId", "file"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Campaign created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Campaign created successfully"
+                    },
+                    "data": {
+                      "type": "object",
+                      "example": {
+                        "campaign_id": "6901c1d8b004a5d55a123abc",
+                        "campaignName": "Follow-up Campaign October",
+                        "status": "scheduled"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+              "description": "Unexpected error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "status": { "type": "integer", "example": 400 },
+                      "message": { "type": "string", "example": "Unexpected error" }
+                    }
+                  }
+                }
+              }
+          }
+        },
+        "security": [
+          { "apiKey": [] },
+          { "bearerAuth": [] }
+        ],
+        "x-mint": {
+          "mcp": { "enabled": true }
+        }
+      },
+      "get": {
+        "summary": "List Campaigns",
+        "tags": ["Campaigns"],
+        "description": "Retrieves a paginated list of created campaigns.",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search keyword to filter campaigns by name or other attributes."
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["scheduled", "running", "completed", "failed"],
+              "example": "scheduled"
+            },
+            "description": "Filter campaigns based on their current status."
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            },
+            "description": "The page number to retrieve."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10
+            },
+            "description": "Number of campaigns to return per page."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Campaigns retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Campaigns retrieved successfully"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "campaigns": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "example": {
+                              "campaign_id": "6901c1d8b004a5d55a123abc",
+                              "campaignName": "Follow-up Campaign October",
+                              "status": "scheduled"
+                            }
+                          }
+                        },
+                        "total": {
+                          "type": "integer",
+                          "example": 0
+                        },
+                        "page": {
+                          "type": "integer",
+                          "example": 1
+                        },
+                        "limit": {
+                          "type": "integer",
+                          "example": 10
+                        },
+                        "pages": {
+                          "type": "integer",
+                          "example": 0
+                        }
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "page": { "type": "integer", "example": 1 },
+                        "limit": { "type": "integer", "example": 10 },
+                        "total": { "type": "integer", "example": 0 },
+                        "totalPages": { "type": "integer", "example": 0 },
+                        "hasNextPage": { "type": "boolean", "example": false },
+                        "hasPrevPage": { "type": "boolean", "example": false }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+              "description": "Unexpected error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "status": { "type": "integer", "example": 400 },
+                      "message": { "type": "string", "example": "Unexpected error" }
+                    }
+                  }
+                }
+              }
+          }
+        },
+        "security": [
+          { "apiKey": [] },
+          { "bearerAuth": [] }
+        ],
+        "x-mint": {
+          "mcp": { "enabled": true }
+        }
+      }
+    },
+    "/api/agents/{agent_id}/conversations/{conversation_id}": {
+      "get": {
+        "summary": "Get Agent Conversation",
+        "tags": ["Agents"],
+        "description": "Retrieves detailed statistics and metadata for a specific conversation of a given agent",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "23432weww43"
+            },
+            "description": "Unique identifier of the agent."
+          },
+          {
+            "name": "conversation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "2edee32d3"
+            },
+            "description": "Unique identifier of the conversation."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Conversation retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Conversation retrieved successfully"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "assistant_id": {
+                          "type": "string",
+                          "example": "68dce5202fc07b92042493b1"
+                        },
+                        "conversation_id": {
+                          "type": "string",
+                          "example": "6900b87ca70928b1224f0619"
+                        },
+                        "disconnect_reason": {
+                          "type": "string",
+                          "example": "user_disconnect"
+                        },
+                        "status": {
+                          "type": "string",
+                          "example": "disconnected"
+                        },
+                        "metadata": {
+                          "type": "object",
+                          "properties": {
+                            "summary": {
+                              "type": "string",
+                              "example": "In the conversation, the customer, Sri, was greeted by the agent Ryan, who introduced himself as a Credit Card Customer Support Agent at BRFC Bank. The purpose of the call was to remind Sri about an upcoming credit card bill due date. Ryan asked how Sri was doing but did not gather any specific bill details during the interaction."
+                            },
+                            "process_compliance": {
+                              "type": "string",
+                              "example": "yes"
+                            },
+                            "outcome": {
+                              "type": "string",
+                              "example": "positive"
+                            },
+                            "conversation_id": {
+                              "type": "string",
+                              "example": "6900b87ca70928b1224f0619"
+                            },
+                            "call_disconnected_by": {
+                              "type": "string",
+                              "example": "user"
+                            }
+                          }
+                        },
+                        "userId": {
+                          "type": "string",
+                          "example": "685d4b93fb5b2e221dc80ea8"
+                        },
+                        "workspaceId": {
+                          "type": ["string", "null"],
+                          "example": null
+                        },
+                        "campaign_id": {
+                          "type": ["string", "null"],
+                          "example": null
+                        },
+                        "to_number": {
+                          "type": ["string", "null"],
+                          "example": null
+                        },
+                        "call_connected_at": {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2025-10-28T12:35:17.423000"
+                        },
+                        "call_disconnected_at": {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2025-10-28T12:59:09.821000"
+                        },
+                        "call_duration": {
+                          "type": "string",
+                          "example": "00:23:52"
+                        },
+                        "call_disconnected_by": {
+                          "type": "string",
+                          "example": "user"
+                        },
+                        "out_come": {
+                          "type": "string",
+                          "example": "positive"
+                        },
+                        "id": {
+                          "type": "string",
+                          "example": "6900be1d39f3fd5dd4e503d4"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+              "description": "Unexpected error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "status": { "type": "integer", "example": 400 },
+                      "message": { "type": "string", "example": "Unexpected error" }
+                    }
+                  }
+                }
+              }
+          }
+        },
+        "security": [
+          { "apiKey": [] },
+          { "bearerAuth": [] }
+        ],
+        "x-mint": {
+          "mcp": { "enabled": true }
+        }
+      }
+    },
+    "/api/agents/{agent_id}/conversations": {
+      "get": {
+        "summary": "List Agent Conversations",
+        "tags": ["Agents"],
+        "description": "Retrieves a paginated list of all conversations for a specific agent",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "234d3e"
+            },
+            "description": "Unique identifier of the agent."
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            },
+            "description": "Page number for pagination."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            },
+            "description": "Number of conversations per page."
+          },
+          {
+            "name": "fromDate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "example": "2025-10-01T00:00:00Z"
+            },
+            "description": "Start date to filter conversations."
+          },
+          {
+            "name": "toDate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "example": "2025-10-28T23:59:59Z"
+            },
+            "description": "End date to filter conversations."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Conversations retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Conversations retrieved successfully"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "conversations": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "example": {
+                              "conversation_id": "6900b87ca70928b1224f0619",
+                              "assistant_id": "68dce5202fc07b92042493b1",
+                              "status": "disconnected",
+                              "outcome": "positive",
+                              "call_duration": "00:23:52",
+                              "call_connected_at": "2025-10-28T12:35:17.423000",
+                              "call_disconnected_at": "2025-10-28T12:59:09.821000"
+                            }
+                          }
+                        },
+                        "total": {
+                          "type": "integer",
+                          "example": 42
+                        },
+                        "page": {
+                          "type": "integer",
+                          "example": 1
+                        },
+                        "limit": {
+                          "type": "integer",
+                          "example": 20
+                        },
+                        "pages": {
+                          "type": "integer",
+                          "example": 3
+                        }
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "page": { "type": "integer", "example": 1 },
+                        "limit": { "type": "integer", "example": 20 },
+                        "total": { "type": "integer", "example": 42 },
+                        "totalPages": { "type": "integer", "example": 3 },
+                        "hasNextPage": { "type": "boolean", "example": true },
+                        "hasPrevPage": { "type": "boolean", "example": false }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+              "description": "Unexpected error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "status": { "type": "integer", "example": 400 },
+                      "message": { "type": "string", "example": "Unexpected error" }
+                    }
+                  }
+                }
+              }
+          }
+        },
+        "security": [
+          { "apiKey": [] },
+          { "bearerAuth": [] }
+        ],
+        "x-mint": {
+          "mcp": { "enabled": true }
+        }
+      }
+    }
+    },
+    "components": {
+      "schemas": {
+        "KnowledgeBaseSource": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "example": "pdf" },
+            "name": { "type": "string", "example": "sample1.pdf" },
+            "url": { "type": "string", "format": "uri", "nullable": true, "example": "https://voicemart-assets.s3.amazonaws.com/683ea9dbea7c50a81708dae7/documents/sample1.pdf" },
+            "content": { "type": "string", "nullable": true, "example": null },
+            "metadata": {
+              "type": "object",
+              "properties": {
+                "fileName": { "type": "string", "nullable": true, "example": "sample1.pdf" },
+                "fileType": { "type": "string", "nullable": true, "example": "pdf" },
+                "fileKey": { "type": "string", "nullable": true, "example": "683ea9dbea7c50a81708dae7/documents/sample1.pdf" },
+                "websiteName": { "type": "string", "nullable": true, "example": "Kids Journey" },
+                "description": { "type": "string", "nullable": true, "example": "" }
+              }
+            },
+            "lastSync": { "type": "string", "format": "date-time", "nullable": true, "example": null },
+            "_id": { "type": "string", "example": "684052e7347bf47f785799e3" },
+            "createdAt": { "type": "string", "format": "date-time", "example": "2025-06-04T14:06:31.374254" },
+            "updatedAt": { "type": "string", "format": "date-time", "example": "2025-06-04T14:06:31.374254" }
+          }
+        },
+        "KnowledgeBase": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string", "example": "Harshu Test KB" },
+            "description": { "type": "string", "example": "Test voice calls" },
+            "type": { "type": "string", "example": "documents" },
+            "sources": {
+              "type": "array",
+              "items": { "$ref": "#/components/schemas/KnowledgeBaseSource" }
+            },
+            "_id": { "type": "string", "example": "684052e7347bf47f785799e2" },
+            "workspaceId": { "type": "string", "example": "683ea9dbea7c50a81708dae7" },
+            "createdAt": { "type": "string", "format": "date-time", "example": "2025-06-04T14:06:31.374254" },
+            "updatedAt": { "type": "string", "format": "date-time", "example": "2025-06-04T14:06:31.374254" }
+          }
+        },
+        "ErrorBadRequest": {
+          "type": "object",
+          "properties": {
+            "status": { "type": "integer", "example": 400 },
+            "message": { "type": "string", "example": "Unexpected error" }
+          }
+        },
+        "ErrorNotFound": {
+          "type": "object",
+          "properties": {
+            "status": { "type": "integer", "example": 404 },
+            "message": { "type": "string", "example": "Agent not found" }
+          }
+        }
+      },
+      "securitySchemes": {
+        "apiKey": {
+          "type": "apiKey",
+          "in": "header",
+          "name": "X-API-Key"
+        },
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      }
+    }
+}

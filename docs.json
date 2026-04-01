@@ -1,0 +1,177 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Ello.AI",
+  "colors": {
+    "primary": "#005871",
+    "light": "#07C983",
+    "dark": "#15803D"
+  },
+  "favicon": "/favicon.svg",
+  "api": {
+    "basePath": "/api-reference",
+    "files": [
+      {
+        "path": "openapi-apikey.json",
+        "label": "API Key Auth"
+      },
+      {
+        "path": "openapi-bearer.json",
+        "label": "Bearer Token Auth"
+      }
+    ]
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "pages": [
+          "doc-pages/introduction",
+          "doc-pages/quickstart",
+          "doc-pages/core-concept",
+          "doc-pages/core-features",
+          "doc-pages/integration",
+          "doc-pages/deployment",
+          "doc-pages/analytics",
+          "doc-pages/pricing",
+          "doc-pages/api",
+          "doc-pages/faq"
+        ]
+      },
+      {
+        "tab": "API reference",
+        "groups": [
+          {
+            "group": "Agents",
+            "openapi": "api-reference/openapi.json",
+            "pages": [
+              "POST /api/agents",
+              "GET /api/agents/{agent_id}",
+              "GET /api/agents",
+              "PUT /api/agents/{agent_id}",
+              "DELETE /api/agents/{agent_id}",
+              "POST /api/agents/knowledge-bases/{kb_id}/assign",
+              "POST /api/agents/knowledge-bases/{kb_id}/unassign"
+            ]
+          },
+          {
+            "group": "Calls",
+            "openapi": "api-reference/openapi.json",
+            "pages": [
+              "POST /api/agents/{agent_id}/calls",
+              "GET /api/reports/agents/calls"
+            ]
+          },
+          {
+            "group": "Phone Number",
+            "openapi": "api-reference/openapi.json",
+            "pages": [
+              "GET /api/phone-number",
+              "PUT /api/agents/{agent_id}/phone-number"
+            ]
+          },
+          {
+            "group": "Knowledge Base",
+            "openapi": "api-reference/openapi.json",
+            "pages": [
+              "POST /api/knowledge-base",
+              "GET /api/knowledge-base",
+              "DELETE /api/knowledge-base/{kb_id}"
+            ]
+          },
+          {
+            "group": "Campaigns",
+            "openapi": "api-reference/openapi.json",
+            "pages": [
+              "POST /api/campaign",
+              "GET /api/campaign"
+            ]
+          },
+          {
+            "group": "Reports",
+            "openapi": "api-reference/openapi.json",
+            "pages": [
+              "GET /api/agents/{agent_id}/conversations/{conversation_id}",
+              "GET /api/agents/{agent_id}/conversations"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Support",
+        "href": "mailto:devops@getello.ai"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Dashboard",
+      "href": "https://dashboard.getello.ai/dashboard"
+    }
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
+  },
+  "seo": {
+    "metatags": {
+      "robots": "index, follow",
+      "charset": "UTF-8",
+      "viewport": "width=device-width, initial-scale=1.0",
+      "title": "AI Voice Agents for Enterprise",
+      "description": "ELLO.AI lets you build enterprise-grade AI voice agents that can create calls, connect with automation platforms like n8n, Make.com, Activepieces, and Zapier, and power complex workflows without code.",
+      "keywords": "ELLO.AI, GenAI, AI Voice Agents, No-Code Automation, AI Call Agents, n8n, Zapier, Make.com, Activepieces, Conversational AI, AI Workflows, Voice Automation, Enterprise AI",
+      "author": "Ello AI",
+      "googlebot": "index, follow",
+      "google": "notranslate",
+      "google-site-verification": "verification_token",
+      "generator": "Mintlify",
+      "theme-color": "#005871",
+      "color-scheme": "light dark",
+      "canonical": "https://docs.getello.ai",
+      "format-detection": "telephone=no",
+      "referrer": "origin",
+      "refresh": "30",
+      "rating": "general",
+      "revisit-after": "7 days",
+      "language": "en",
+      "copyright": "Copyright 2024",
+      "reply-to": "deveops@getello.ai",
+      "distribution": "global",
+      "coverage": "Worldwide",
+      "category": "Technology",
+      "target": "all",
+      "HandheldFriendly": "True",
+      "MobileOptimized": "320",
+      "apple-mobile-web-app-capable": "yes",
+      "apple-mobile-web-app-status-bar-style": "black",
+      "apple-mobile-web-app-title": "Ello.AI",
+      "application-name": "Ello.AI",
+      "msapplication-TileColor": "#000000",
+      "msapplication-TileImage": "https://dashboard.getello.ai/images/common/metaDataImage.png",
+      "msapplication-config": "path/to/browserconfig.xml",
+      "og:title": "Open Graph Title",
+      "og:type": "website",
+      "og:url": "https://geello.ai",
+      "og:image": "https://dashboard.getello.ai/images/common/metaDataImage.png",
+      "og:description": "ELLO.AI lets you build enterprise-grade AI voice agents that can create calls, connect with automation platforms like n8n, Make.com, Activepieces, and Zapier, and power complex workflows without code.",
+      "og:site_name": "Ello.AI",
+      "og:locale": "en_US"
+    }
+  }
+}

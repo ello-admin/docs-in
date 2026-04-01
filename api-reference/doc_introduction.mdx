@@ -1,0 +1,184 @@
+---
+title: "Doc Introduction"  
+sidebarTitle: "Introduction" 
+description: "Overview of the API" 
+---
+
+
+## Introduction
+
+Ello is an enterprise-grade Voice AI platform that lets you create, deploy, and manage self-evolving conversational agents in minutes. Built for scale, reliability, and integration, Ello uses our proprietary **AdaptivePrompt** technology so agents continually improve themselves from real conversation data.
+
+<Columns cols={3}>
+  <Card title="Deploy in minutes">
+    Pre-built templates, instant phone provisioning, one-click deploy.
+  </Card>
+  <Card title="Self-Evolving Agents" horizontal>
+    AdaptivePrompt rewrites agent instructions automatically from real  conversations.
+  </Card>
+  <Card title="Enterprise Ready" horizontal>
+    99.99% uptime SLA, SOC 2 & HIPAA-ready, multi-region deployment.
+  </Card>
+</Columns>
+
+## Quickstart
+
+<Card>
+  Follow these steps to go from zero to a production voice agent in minutes
+
+  **1) Sign up & get credits**
+
+  Start with a 3-day trial (example): you receive \$10 in credits to test voice agents.
+
+  **2) Create an Agent**
+
+  Open the visual conversation builder and choose a template (customer support, appointment booking, surveys).
+
+  ```
+  // Example: minimal agent config (JSON)
+  {
+    "name": "support-agent",
+    "language": "en-US",
+    "flow": [{"id":"greet","type":"message","text":"Hi — how can I help today?"}]
+  }
+  ```
+
+  **3) Configure Integrations**
+
+  Connect your CRM, calendar, or webhook endpoints. Use Zapier/n8n for no-code integrations or the MCP server for deeper integration.
+
+  **4) Provision a Phone Number & Deploy**
+
+  Provision a US number instantly or attach your SIP trunk for international numbers and click _Deploy_.
+
+  ```
+  # Deploy via CLI (example)
+  curl -X POST "https://api.ello.ai/v1/agents"   -H "Authorization: Bearer $ELLO_API_KEY"   -H "Content-Type: application/json"   -d '{"name":"support-agent","template":"support-basic"}'
+  ```
+
+  <Tip>
+    AdaptivePrompt begins to analyze and improve after ~20–30 conversations and often shows measurable gains within the first 1–2 weeks.
+  </Tip>
+</Card>
+
+## Core Concept - AdaptivePrompt
+
+<Card>
+  AdaptivePrompt is Ello's self-evolving engine. Instead of manual prompt engineering, AdaptivePrompt monitors live conversations, identifies failure patterns, and generates optimized instructions — effectively letting agents rewrite their own strategy over time.
+
+  ### **How it works**
+
+  - Multi-branch optimization creates parallel agent personalities specialized for different contexts.
+  - Automated evaluation networks ensure only improvements that pass quality gates are adopted.
+  - Administrators can set guardrails and perform rollbacks to previous stable versions.
+
+  ### **Safety & Controls**
+
+  AdaptivePrompt includes automatic auditing and human-review hooks. You can tune sensitivity, set automated rollback thresholds, and require manual approval for production changes.
+</Card>
+
+## Core Features
+
+<Card>
+  <Columns cols={2}>
+    <Card title="Smart Caching">
+      Cache common responses (greetings, FAQs) to cut LLM calls and reduce costs by up to ~70% at scale.
+    </Card>
+    <Card title="Model Switching">
+      Route simple tasks to efficient models and reserve premium models for complex tasks to optimize cost / performance.
+    </Card>
+    <Card title="StreamFlow">
+      Stream responses to TTS in real time to reduce latency and create natural conversational pacing.
+    </Card>
+    <Card title="AutoTest">
+      Automated scenario testing and prompt evaluation to verify agent behavior before releasing to production.
+    </Card>
+  </Columns>
+</Card>
+
+## Integration
+
+<Card>
+  Ello is built to connect with your stack. Use no-code connectors or deep integrations.
+
+  #### **No-code & Workflow**
+
+  Connect via Zapier, Make, or n8n to trigger actions across thousands of SaaS apps.
+
+  #### **Developer Integrations**
+
+  Use the MCP server for secure, performant integration into backend systems, or call REST APIs and webhooks directly.
+
+  #### **Planned Direct Integrations**
+
+  Ello plans direct integrations with many productivity and data platforms such as Google Suite, GitHub, Slack, Salesforce, Shopify, Zendesk, and more.
+</Card>
+
+## Deployment & Telephony
+
+<Card>
+  #### **Phone Numbers & SIP**
+
+  Instant US number provisioning is available. For international numbers, attach your existing SIP trunk. Ello supports any SIP trunk provider globally.
+
+  #### **Deployment Steps**
+
+  1. Create agent with visual builder or API.
+  2. Attach integrations and webhooks.
+  3. Provision number or attach SIP trunk.
+  4. Click "Deploy" and monitor real-time analytics.
+
+  <Note>
+    Note: Many customers are able to go live in under an hour for basic setups. Enterprise rollouts with extensive integrations typically take 1–2 weeks.
+  </Note>
+</Card>
+
+## Analytics & Monitoring
+
+<Card>
+  Ello provides real-time call monitoring, conversation analytics, and exportable reporting. You can track success rates, CSAT, and see how AdaptivePrompt changes impact performance.
+
+  #### **Transcripts & Summaries**
+
+  Automatically generated transcripts and intelligent summaries feed into the evolution system and help with audit trails and compliance.
+
+  #### **Exporting & BI**
+
+  Export analytics for BI tools; set scheduled reports or stream analytics to your data warehouse via webhooks.
+</Card>
+
+## Pricing Summary
+
+<Card title="Pricing">
+  Transparent plans to fit individuals, teams, and enterprises.
+  <Columns cols={3}>
+    <Card title="Starter">
+    $10/month per user (billed yearly) — free credits, basic agents, limited concurrent calls.
+    </Card>
+    <Card title="Pro">
+      $90/month — unlimited concurrent calls, advanced features.
+    </Card>
+    <Card title="Enterprise / White Label">
+      Custom pricing, dedicated support, SLAs, and volume discounts.
+    </Card>
+  </Columns>
+  <h4>Credits & Usage</h4>
+  Credits: 100 credits = $9.99 (~$0.05/credit). English voice: 1 credit/min; Multilingual: 1.5 credits/min; Text session: 2 credits/session.
+</Card>
+
+## FAQs
+
+<AccordionGroup>
+  <Accordion title="How fast does AdaptivePrompt improve?">
+    AdaptivePrompt begins analysis after ~20–30 conversations. Many teams see improvements within the first week and measurable gains after two weeks, depending on traffic.
+  </Accordion>
+  <Accordion title="Can I use my own models?">
+    Yes — Ello supports bring-your-own models while still using the platform's routing, caching, and evolution tools.
+  </Accordion>
+  <Accordion title="Is Ello secure and compliant?">
+    Ello meets enterprise security standards including SOC 2 and HIPAA compliance. Contact Sales for enterprise-specific certifications and audit reports.
+  </Accordion>
+  <Accordion title="How do I provision numbers for global calls?">
+    We provide instant US number provisioning. For international numbers, attach your SIP trunk or use a local provider and connect via SIP.
+  </Accordion>
+</AccordionGroup>
