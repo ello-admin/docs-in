@@ -113,7 +113,7 @@
     "primary": {
       "type": "button",
       "label": "Dashboard",
-      "href": "https://dashboard.getello.ai/dashboard"
+      "href": "https://dashboard-in.getello.ai/dashboard"
     }
   },
   "contextual": {
@@ -163,12 +163,12 @@
       "apple-mobile-web-app-title": "Ello.AI",
       "application-name": "Ello.AI",
       "msapplication-TileColor": "#000000",
-      "msapplication-TileImage": "https://dashboard.getello.ai/images/common/metaDataImage.png",
+      "msapplication-TileImage": "https://dashboard-in.getello.ai/images/common/metaDataImage.png",
       "msapplication-config": "path/to/browserconfig.xml",
       "og:title": "Open Graph Title",
       "og:type": "website",
       "og:url": "https://geello.ai",
-      "og:image": "https://dashboard.getello.ai/images/common/metaDataImage.png",
+      "og:image": "https://dashboard-in.getello.ai/images/common/metaDataImage.png",
       "og:description": "ELLO.AI lets you build enterprise-grade AI voice agents that can create calls, connect with automation platforms like n8n, Make.com, Activepieces, and Zapier, and power complex workflows without code.",
       "og:site_name": "Ello.AI",
       "og:locale": "en_US"
