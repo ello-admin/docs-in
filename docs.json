@@ -96,6 +96,22 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "Webhooks",
+        "pages": [
+          "api-reference/webhooks/index",
+          {
+            "group": "Webhooks",
+            "pages": [
+              "api-reference/webhooks/initial-setup",
+              "api-reference/webhooks/webhook-payloads",
+              "api-reference/webhooks/error-handling",
+              "api-reference/webhooks/implementation",
+              "api-reference/webhooks/best-practices"
+            ]
+          }
+        ]
       }
     ]
   },
@@ -143,7 +159,7 @@
       "generator": "Mintlify",
       "theme-color": "#005871",
       "color-scheme": "light dark",
-      "canonical": "https://docs.getello.ai",
+      "canonical": "https://docs-in.getello.ai",
       "format-detection": "telephone=no",
       "referrer": "origin",
       "refresh": "30",
@@ -167,7 +183,7 @@
       "msapplication-config": "path/to/browserconfig.xml",
       "og:title": "Open Graph Title",
       "og:type": "website",
-      "og:url": "https://geello.ai",
+      "og:url": "https://getello.ai",
       "og:image": "https://dashboard-in.getello.ai/images/common/metaDataImage.png",
       "og:description": "ELLO.AI lets you build enterprise-grade AI voice agents that can create calls, connect with automation platforms like n8n, Make.com, Activepieces, and Zapier, and power complex workflows without code.",
       "og:site_name": "Ello.AI",
